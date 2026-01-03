@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>هيموني | بورتفوليو</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#050611">
+</head>
+
+<body>
+  <!-- فضاء: نجوم + قمر -->
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="space-vignette" aria-hidden="true"></div>
+
+  <!-- شريط علوي -->
+  <header class="topbar glass">
+    <a class="brand" href="#home">هيموني</a>
+
+    <nav class="nav">
+      <a href="#about">عني</a>
+      <a href="#work">أعمالي</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+
+    <div class="audio-controls">
+      <button id="muteBtn" class="icon-btn" type="button" aria-pressed="false" title="كتم/تشغيل الصوت">
+        <span id="muteIcon" class="icon">🔊</span>
+      </button>
+
+      <input id="vol" class="vol" type="range" min="0" max="100" value="75" aria-label="مستوى الصوت" />
+    </div>
+  </header>
+
+  <!-- المحتوى -->
+  <main class="wrap" id="home">
+    <section class="hero">
+      <div class="hero-card glass">
+        <div class="badge">
+          <span class="dot"></span>
+          <span>جاهز للتعاون</span>
+        </div>
+
+        <h1 class="title"><span class="shine">هيموني</span></h1>
+
+        <p class="subtitle">
+          <span class="type pop" id="typeText">صانع محتوى</span>
+        </p>
+
+        <p class="desc">
+          اكتب وصف قوي وجذاب (سطرين إلى أربعة): شنو تقدّم؟ شنو يميّزك؟ شنو نتائجك؟
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="#contact">تواصل وياي</a>
+          <a class="btn" href="#work">شوف أعمالي</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="num" data-count="120">0</div>
+            <div class="label">مشروع</div>
+          </div>
+          <div class="stat">
+            <div class="num" data-count="45">0</div>
+            <div class="label">عميل</div>
+          </div>
+          <div class="stat">
+            <div class="num" data-count="8">0</div>
+            <div class="label">سنوات خبرة</div>
+          </div>
+        </div>
+
+        <div class="social">
+          <a class="pill" href="https://instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+          <a class="pill" href="https://tiktok.com/" target="_blank" rel="noreferrer">TikTok</a>
+          <a class="pill" href="https://youtube.com/" target="_blank" rel="noreferrer">YouTube</a>
+        </div>
+
+        <p class="hint">الصوت يشتغل بأول لمسة/سكرول، وبعدها تقدر تتحكم بالميوت والسلايدر.</p>
+      </div>
+    </section>
+
+    <section class="section glass" id="about">
+      <h2>عني</h2>
+      <p class="p">
+        هنا تكتب نبذة مرتّبة: منو أنت؟ شنو مجالك؟ شنو اللي تقدمه؟ خليها واضحة ومركّزة.
+      </p>
+      <div class="chips">
+        <span class="chip">تصميم</span>
+        <span class="chip">مونتاج</span>
+        <span class="chip">إدارة محتوى</span>
+        <span class="chip">Branding</span>
+      </div>
+    </section>
+
+    <section class="section glass" id="work">
+      <div class="section-head">
+        <h2>أعمالي</h2>
+        <p class="muted">بدّل البطاقات بصورك/روابطك.</p>
+      </div>
+
+      <div class="work-grid">
+        <a class="work" href="#" target="_blank" rel="noreferrer">
+          <div class="thumb t1"></div>
+          <div class="meta"><strong>مشروع 01</strong><span>تصميم/هوية</span></div>
+        </a>
+        <a class="work" href="#" target="_blank" rel="noreferrer">
+          <div class="thumb t2"></div>
+          <div class="meta"><strong>مشروع 02</strong><span>مونتاج ريلز</span></div>
+        </a>
+        <a class="work" href="#" target="_blank" rel="noreferrer">
+          <div class="thumb t3"></div>
+          <div class="meta"><strong>مشروع 03</strong><span>خطة محتوى</span></div>
+        </a>
+        <a class="work" href="#" target="_blank" rel="noreferrer">
+          <div class="thumb t4"></div>
+          <div class="meta"><strong>مشروع 04</strong><span>Poster / Social</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section glass" id="contact">
+      <h2>تواصل</h2>
+      <p class="muted">بدّل الروابط برقمك/إيميلك.</p>
+      <div class="contact">
+        <a class="btn primary" href="https://wa.me/9647700000000" target="_blank" rel="noreferrer">واتساب</a>
+        <a class="btn" href="mailto:you@example.com">إيميل</a>
+      </div>
+    </section>
+
+    <footer class="footer">© <span id="year"></span> هيموني</footer>
+  </main>
+
+  <!-- صوت الخلفية (ملف محلي) -->
+  <audio id="bgMusic" src="theme.mp3" preload="auto" loop></audio>
+
+  <script>
+    // ===== سنة =====
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== تبديل لقب =====
+    const roles = ["صانع محتوى","مصمم","مونتاج","Brand Builder"];
+    const typeEl = document.getElementById("typeText");
+    let idx = 0;
+    setInterval(() => {
+      idx = (idx + 1) % roles.length;
+      typeEl.classList.remove("pop");
+      void typeEl.offsetWidth;
+      typeEl.textContent = roles[idx];
+      typeEl.classList.add("pop");
+    }, 2200);
+
+    // ===== عدادات =====
+    function animateCount(el){
+      const target = Number(el.dataset.count || 0);
+      let cur = 0;
+      const step = Math.max(1, Math.floor(target / 60));
+      const t = setInterval(() => {
+        cur += step;
+        if(cur >= target){ cur = target; clearInterval(t); }
+        el.textContent = cur;
+      }, 16);
+    }
+    document.querySelectorAll(".num").forEach(animateCount);
+
+    // ===== الصوت: ميوت + سلايدر + تشغيل بأول لمسة =====
+    const bgMusic = document.getElementById("bgMusic");
+    const vol = document.getElementById("vol");
+    const muteBtn = document.getElementById("muteBtn");
+    const muteIcon = document.getElementById("muteIcon");
+
+    function setVolume(v){
+      const value = Math.max(0, Math.min(100, v));
+      bgMusic.volume = value / 100;
+      vol.value = String(value);
+
+      if (bgMusic.muted || value === 0) muteIcon.textContent = "🔇";
+      else if (value < 35) muteIcon.textContent = "🔈";
+      else if (value < 70) muteIcon.textContent = "🔉";
+      else muteIcon.textContent = "🔊";
+    }
+
+    setVolume(75);
+
+    vol.addEventListener("input", () => setVolume(Number(vol.value)));
+
+    muteBtn.addEventListener("click", () => {
+      bgMusic.muted = !bgMusic.muted;
+      muteBtn.setAttribute("aria-pressed", bgMusic.muted ? "true" : "false");
+      setVolume(Number(vol.value));
+    });
+
+    // تشغيل ذكي: أول لمسة/نقرة/سكرول تشغل الصوت مرة وحدة
+    let unlocked = false;
+
+    async function unlockAudio(){
+      if (unlocked) return;
+      try{
+        bgMusic.muted = false;
+        await bgMusic.play();
+        unlocked = true;
+      }catch(e){
+        // إذا فشل، يبقى يحاول باللمسة الجاية
+        unlocked = false;
+        console.log("فشل تشغيل الصوت:", e);
+      }
+    }
+
+    ["pointerdown","touchstart","keydown","wheel"].forEach(ev => {
+      window.addEventListener(ev, unlockAudio, { passive: true });
+    });
+
+    // ===== نجوم + شهب =====
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    let w, h, stars = [], meteors = [];
+
+    function resize(){
+      w = canvas.width = Math.floor(window.innerWidth * devicePixelRatio);
+      h = canvas.height = Math.floor(window.innerHeight * devicePixelRatio);
+      canvas.style.width = "100vw";
+      canvas.style.height = "100vh";
+
+      const count = Math.floor((window.innerWidth * window.innerHeight) / 8500);
+      stars = new Array(count).fill(0).map(() => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: (Math.random() * 1.8 + 0.2),
+        s: (Math.random() * 0.65 + 0.15),
+        t: Math.random() * Math.PI * 2
+      }));
+    }
+
+    function spawnMeteor(){
+      if (meteors.length > 2) return;
+      const startX = Math.random() * w * 0.8;
+      const startY = Math.random() * h * 0.3;
+      meteors.push({
+        x: startX, y: startY,
+        vx: (8 + Math.random()*6) * devicePixelRatio,
+        vy: (4 + Math.random()*4) * devicePixelRatio,
+        life: 0,
+        max: 30 + Math.random()*25
+      });
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+
+      // خلفية خفيفة حتى النجوم تبين
+      ctx.fillStyle = "rgba(0,0,0,0.18)";
+      ctx.fillRect(0,0,w,h);
+
+      for(const st of stars){
+        st.y += st.s * devicePixelRatio * 1.4;
+        if(st.y > h + 10){ st.y = -10; st.x = Math.random() * w; }
+
+        st.t += 0.02;
+        const tw = 0.55 + 0.45*Math.sin(st.t);
+
+        ctx.globalAlpha = 0.55 * tw;
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r * devicePixelRatio, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(255,255,255,0.95)";
+        ctx.fill();
+
+        if(st.r > 1.5){
+          ctx.globalAlpha = 0.16 * tw;
+          ctx.beginPath();
+          ctx.arc(st.x, st.y, st.r * devicePixelRatio * 3.4, 0, Math.PI*2);
+          ctx.fillStyle = "rgba(160,190,255,0.9)";
+          ctx.fill();
+        }
+      }
+
+      if (Math.random() < 0.008) spawnMeteor();
+      for (let i = meteors.length - 1; i >= 0; i--){
+        const m = meteors[i];
+        m.x += m.vx;
+        m.y += m.vy;
+        m.life += 1;
+
+        ctx.globalAlpha = 0.55;
+        ctx.strokeStyle = "rgba(200,220,255,0.85)";
+        ctx.lineWidth = 2 * devicePixelRatio;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(m.x - m.vx * 3.5, m.y - m.vy * 3.5);
+        ctx.stroke();
+
+        if (m.life > m.max || m.x > w+200 || m.y > h+200){
+          meteors.splice(i,1);
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
+</body>
+</html>
